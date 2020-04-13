@@ -9,7 +9,7 @@
 
   <groupId>com.paulhammant</groupId>
   <artifactId>ngwebdriver</artifactId>
-  <version>1.1.5-SNAPSHOT</version>
+  <version>1.1.6-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>ngWebDriver</name>
@@ -30,6 +30,8 @@
   </scm>
 
   <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -37,7 +39,7 @@
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>6.14.2</version>
+      <version>6.14.3</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -55,7 +57,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium.fluent</groupId>
       <artifactId>fluent-selenium</artifactId>
-      <version>1.19</version>
+      <version>1.21</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>  <!-- declare the exclusion here -->
@@ -67,7 +69,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>[3.12.0,)</version>
+      <version>3.141.59</version>
       <exclusions>
         <exclusion>
           <groupId>org.eclipse.jetty.websocket</groupId>
@@ -78,7 +80,7 @@
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-server</artifactId>
-      <version>9.4.8.v20171121</version>
+      <version>9.4.24.v20191120</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

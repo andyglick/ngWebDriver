@@ -1,6 +1,6 @@
 # ngWebDriver
 
-A small library of WebDriver locators and more for AngularJS (v1.x) and Angular (v2.x +), for Java.
+A small library of WebDriver locators and more for AngularJS (v1.x) and Angular (2, 3, 4, 5, 6, 7, 8), for Java. It works with Firefox, Chrome and all the other Selenium-WebDriver browsers.
 
 # Status
 
@@ -28,6 +28,8 @@ NgWebDriver ngWebDriver = new NgWebDriver(driver);
 ngWebDriver.waitForAngularRequestsToFinish();
 ```
 Do this if WebDriver can possibly run ahead of Angular's ability finish it's MVC stuff in your application.
+In some of the error cases (e.g. if it's not an angular application or if the root selector could not be found correctly in an angular 2 app, 
+an error message is returned from the waitForAngularRequestsToFinish method.
 
 ## Locators
 
@@ -116,6 +118,31 @@ ByAngular.partialButtonText("cLiCk ")
 ByAngular.cssContainingText("#animals ul .pet", "dog")
 ```
 
+## Page Objects.
+
+The work in the same way at WebDriver's page object technology, there are a set of `FindBy` 
+annotations for ngWebDriver:
+
+```
+@ByAngularBinding.FindBy(..)
+@ByAngularButtonText.FindBy(..)
+@ByAngularButtonText.FindBy(..)
+@ByAngularCssContainingText.FindBy(..)
+@ByAngularExactBinding.FindBy(..)
+@ByAngularModel.FindBy(..)
+@ByAngularOptions.FindBy(..)
+@ByAngularPartialButtonText.FindBy(..)
+@ByAngularRepeater.FindBy(..)
+@ByAngularRepeaterCell.FindBy(..)
+@ByAngularRepeaterColumn.FindBy(..)
+@ByAngularRepeaterRow.FindBy(..)
+```
+
+Declare them above fields as you would have done for `FindBy` in the regular WebDriver and 
+continue to to use `PageFactory.initElements(..)` as normal. Refer to the parameters for the new
+`FindBy` static inner classes as there's `rootSelector` argument that is optional, but should 
+have been tried before you raise a bug with ngWebDriver.
+
 ## Angular model interop
 
 As with Protractor, you can change items in an Angular model, or retrieve them regardless of whether they appear in the UI or not.
@@ -189,20 +216,21 @@ ByAngular.Factory baf = ByAngular.withRootSelector("something-custom");
 ByAngularRepeater foo = baf.exactRepeater("day in days");
 ```
 
-### Alternate selectors
+### Alternate root selectors
 
 Referring to a handy StackOverflow questions - [No injector found for element argument to getTestability](http://stackoverflow.com/questions/28040078/no-injector-found-for-element-argument-to-gettestability), you can use the applicable selector for your Angular app:
 
-* `'[ng-app]'`- matching an element that has the arribute `ng-app` (this is the default)
-* `'#my-app'` - matching an id `my-app`
-* `'[fooBar]'` - matching an attribute `fooBar` on any element
-* `'[module=todoApp]'` - the "todo app" module (amongst others) on the [https://angularjs.org](https://angularjs.org) home page.
+* `.withRootSelector("[ng-app]")`- matching an element that has the arribute `ng-app` (this is the default)
+* `.withRootSelector("\"app-root\"")`- matching an element that has the element name `app-root`
+* `.withRootSelector("#my-app")` - matching an id `my-app`
+* `.withRootSelector("[fooBar]")` - matching an attribute `fooBar` on any element
+* `.withRootSelector("[module=todoApp]")` - the "todo app" module (amongst others) on the [https://angularjs.org](https://angularjs.org) home page.
 
 There's a reference to css selectors you'll need to read - https://www.w3schools.com/cssref/css_selectors.asp - because that's the type of string it is going to require.
 
 ### Still needing help on $$testability ?
 
-Read the five or so bug reports on $$testability and how (most likely) you have to learn a little about you application so that you can use `.withRootSelector("abc123")`. Those bug reports: https://github.com/paul-hammant/ngWebDriver/issues?issue+testability. Also deeply read the css_selectors page on w3schools.com (link above) so you can fine tune your selector fu **before** filing a bug against this project.
+Read the five or so bug reports on $$testability and how (most likely) you have to learn a little about you application so that you can use `.withRootSelector("\"abc123\"")`. Those bug reports: https://github.com/paul-hammant/ngWebDriver/issues?issue+testability. Also deeply read the css_selectors page on w3schools.com (link above) so you can fine tune your selector fu **before** filing a bug against this project.
 
 ## Other Functions
 
@@ -228,6 +256,7 @@ All our usage examples are in [a single test class](https://github.com/paul-hamm
   <groupId>com.paulhammant</groupId>
   <artifactId>ngwebdriver</artifactId>
   <version>1.1.3</version>
+  <!-- You might want to delete the following line if you get "package com.paulhammant.ngwebdriver does not exist" errors -->
   <scope>test</scope>
 </dependency>
 
@@ -241,7 +270,7 @@ Download from [Mavens Central Repo](http://search.maven.org/#search%7Cga%7C1%7Ca
 
 ## Releases
 
-Last Release: 1.1.4 - Jun 21, 2018
+Last Release: 1.1.5 - Feb 22, 2020
 
 Refer [CHANGELOG](./CHANGELOG.md)
 
