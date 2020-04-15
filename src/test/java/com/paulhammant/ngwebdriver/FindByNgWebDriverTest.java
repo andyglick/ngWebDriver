@@ -1,125 +1,121 @@
 package com.paulhammant.ngwebdriver;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.testng.Assert.fail;
+import org.junit.Test;
 
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.Annotations;
-import org.testng.annotations.Test;
 
 public class FindByNgWebDriverTest {
 
     @ByAngularBinding.FindBy(rootSelector = "butter", binding = "cheese")
-    public WebElement findBy_binding;
+    public WebElement findByBinding;
 
     @ByAngularButtonText.FindBy(rootSelector = "butter", buttonText = "cheese")
-    public WebElement findBy_buttonText;
+    public WebElement findByButtonText;
 
     @ByAngularCssContainingText.FindBy(rootSelector = "butter", cssSelector = "cheese", searchText = "crackers")
-    public WebElement findBy_cssContainingText;
+    public WebElement findByCssContainingText;
 
     @ByAngularExactBinding.FindBy(rootSelector = "butter", exactBinding = "cheese")
-    public WebElement findBy_exactBinding;
+    public WebElement findByExactBinding;
 
     @ByAngularModel.FindBy(rootSelector = "butter", model = "cheese")
-    public WebElement findBy_model;
+    public WebElement findByModel;
 
     @ByAngularOptions.FindBy(rootSelector = "butter", options = "cheese")
-    public WebElement findBy_options;
+    public WebElement findByOptions;
 
     @ByAngularPartialButtonText.FindBy(rootSelector = "butter", partialButtonText = "cheese")
-    public WebElement findBy_partialButtonText;
+    public WebElement findByPartialButtonText;
 
     @ByAngularRepeater.FindBy(rootSelector = "butter", repeater = "cheese", exact = true)
-    public WebElement findBy_repeater;
+    public WebElement findByRepeater;
 
     @ByAngularRepeaterCell.FindBy(rootSelector = "butter", repeater = "cheese", exact = true, row = 99, column = "cracker")
-    public WebElement findBy_repeaterCell;
+    public WebElement findByRepeaterCell;
 
     @ByAngularRepeaterColumn.FindBy(rootSelector = "butter", repeater = "cheese", exact = true, column = "cracker")
-    public WebElement findBy_repeaterColumn;
+    public WebElement findByRepeaterColumn;
 
     @ByAngularRepeaterRow.FindBy(rootSelector = "butter", repeater = "cheese", exact = true, row = 99)
-    public WebElement findBy_repeaterRow;
+    public WebElement findByRepeaterRow;
 
     @Test
     public void findByAngularBinding() throws Exception {
-        ByAngularBinding built = (ByAngularBinding) new Annotations(getClass().getField("findBy_binding")).buildBy();
+        ByAngularBinding built = (ByAngularBinding) new Annotations(getClass().getField("findByBinding")).buildBy();
         ByAngularBinding expected = new ByAngularBinding("butter", "cheese");
-        assertThat(built, equalTo(expected));
+        Assertions.assertThat(built).isEqualTo(expected);
     }
 
     @Test
     public void findByButtonText() throws Exception {
-        ByAngularButtonText built = (ByAngularButtonText) new Annotations(getClass().getField("findBy_buttonText")).buildBy();
+        ByAngularButtonText built = (ByAngularButtonText) new Annotations(getClass().getField("findByButtonText")).buildBy();
         ByAngularButtonText expected = new ByAngularButtonText("butter", "cheese");
-        assertThat(built, equalTo(expected));
+        Assertions.assertThat(built).isEqualTo(expected);
     }
 
     @Test
     public void findByCssContainingText() throws Exception {
-        ByAngularCssContainingText built = (ByAngularCssContainingText) new Annotations(getClass().getField("findBy_cssContainingText")).buildBy();
+        ByAngularCssContainingText built = (ByAngularCssContainingText) new Annotations(getClass().getField("findByCssContainingText")).buildBy();
         ByAngularCssContainingText expected = new ByAngularCssContainingText("butter", "cheese", "crackers");
-        assertThat(built, equalTo(expected));
+        Assertions.assertThat(built).isEqualTo(expected);
     }
 
     @Test
     public void findByExactBinding() throws Exception {
-        ByAngularExactBinding built = (ByAngularExactBinding) new Annotations(getClass().getField("findBy_exactBinding")).buildBy();
+        ByAngularExactBinding built = (ByAngularExactBinding) new Annotations(getClass().getField("findByExactBinding")).buildBy();
         ByAngularExactBinding expected = new ByAngularExactBinding("butter", "cheese");
-        assertThat(built, equalTo(expected));
+        Assertions.assertThat(built).isEqualTo(expected);
     }
 
     @Test
     public void findByModel() throws Exception {
-        ByAngularModel built = (ByAngularModel) new Annotations(getClass().getField("findBy_model")).buildBy();
+        ByAngularModel built = (ByAngularModel) new Annotations(getClass().getField("findByModel")).buildBy();
         ByAngularModel expected = new ByAngularModel("butter", "cheese");
-        assertThat(built, equalTo(expected));
+        Assertions.assertThat(built).isEqualTo(expected);
     }
 
     @Test
     public void findByOptions() throws Exception {
-        ByAngularOptions built = (ByAngularOptions) new Annotations(getClass().getField("findBy_options")).buildBy();
+        ByAngularOptions built = (ByAngularOptions) new Annotations(getClass().getField("findByOptions")).buildBy();
         ByAngularOptions expected = new ByAngularOptions("butter", "cheese");
-        assertThat(built, equalTo(expected));
+        Assertions.assertThat(built).isEqualTo(expected);
     }
 
     @Test
     public void findByPartialButtonText() throws Exception {
-        ByAngularPartialButtonText built = (ByAngularPartialButtonText) new Annotations(getClass().getField("findBy_partialButtonText")).buildBy();
+        ByAngularPartialButtonText built = (ByAngularPartialButtonText) new Annotations(getClass().getField("findByPartialButtonText")).buildBy();
         ByAngularPartialButtonText expected = new ByAngularPartialButtonText("butter", "cheese");
-        assertThat(built, equalTo(expected));
+        Assertions.assertThat(built).isEqualTo(expected);
     }
 
     @Test
     public void findByRepeater() throws Exception {
-        ByAngularRepeater built = (ByAngularRepeater) new Annotations(getClass().getField("findBy_repeater")).buildBy();
+        ByAngularRepeater built = (ByAngularRepeater) new Annotations(getClass().getField("findByRepeater")).buildBy();
         ByAngularRepeater expected = new ByAngularRepeater("butter", "cheese", true);
-        assertThat(built, equalTo(expected));
+        Assertions.assertThat(built).isEqualTo(expected);
     }
     
     @Test
     public void findByRepeaterCell() throws Exception {
-        ByAngularRepeaterCell built = (ByAngularRepeaterCell) new Annotations(getClass().getField("findBy_repeaterCell")).buildBy();
+        ByAngularRepeaterCell built = (ByAngularRepeaterCell) new Annotations(getClass().getField("findByRepeaterCell")).buildBy();
         ByAngularRepeaterCell expected = new ByAngularRepeaterCell("butter", "cheese", true,  99,  "cracker");
-        assertThat(built, equalTo(expected));
+        Assertions.assertThat(built).isEqualTo(expected);
     }
 
     @Test
     public void findByRepeaterColumn() throws Exception {
-        ByAngularRepeaterColumn built = (ByAngularRepeaterColumn) new Annotations(getClass().getField("findBy_repeaterColumn")).buildBy();
+        ByAngularRepeaterColumn built = (ByAngularRepeaterColumn) new Annotations(getClass().getField("findByRepeaterColumn")).buildBy();
         ByAngularRepeaterColumn expected = new ByAngularRepeaterColumn("butter", "cheese", true,  "cracker");
-        assertThat(built, equalTo(expected));
+        Assertions.assertThat(built).isEqualTo(expected);
     }
 
     @Test
     public void findByRepeaterRow() throws Exception {
-        ByAngularRepeaterRow built = (ByAngularRepeaterRow) new Annotations(getClass().getField("findBy_repeaterRow")).buildBy();
+        ByAngularRepeaterRow built = (ByAngularRepeaterRow) new Annotations(getClass().getField("findByRepeaterRow")).buildBy();
         ByAngularRepeaterRow expected = new ByAngularRepeaterRow("butter", "cheese", true,  99);
-        assertThat(built, equalTo(expected));
+        Assertions.assertThat(built).isEqualTo(expected);
     }
-
 }
 
