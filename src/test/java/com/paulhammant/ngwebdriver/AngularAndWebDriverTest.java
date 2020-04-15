@@ -219,6 +219,7 @@ public class AngularAndWebDriverTest {
 
   public static class TextContainsTerm implements FluentMatcher {
 
+    @SuppressWarnings("FieldMayBeFinal")
     private String term;
 
     public TextContainsTerm(String term) {
@@ -226,7 +227,7 @@ public class AngularAndWebDriverTest {
     }
 
     public boolean matches(FluentWebElement webElement, int ix) {
-      return webElement.getWebElement().getText().indexOf(term) > -1;
+      return webElement.getWebElement().getText().contains(term);
     }
 
     @Override
@@ -320,6 +321,7 @@ public class AngularAndWebDriverTest {
 
   // Model interaction
 
+  @SuppressWarnings("rawtypes")
   @Test
   @Ignore(value = "ignore message for model_mutation_and_query_is_possible: angularjshub is down")
   public void model_mutation_and_query_is_possible() {
@@ -575,7 +577,7 @@ public class AngularAndWebDriverTest {
 
     try {
       new Actions(webDriver).dragAndDropBy(sliderBar.getWebElement(), 400, 20).build().perform();
-    } catch(MoveTargetOutOfBoundsException e) {
+    } catch(MoveTargetOutOfBoundsException ignored) {
 
     }
 
@@ -629,13 +631,12 @@ public class AngularAndWebDriverTest {
 
     webDriver.get("http://localhost:8080/index.html#/repeater");
 
-    Map<String, String> expected = new HashMap<String, String>();
+    Map<String, String> expected = new HashMap<>();
     expected.put("M", "Monday");
     expected.put("T", "Tuesday");
     expected.put("W", "Wednesday");
     expected.put("Th", "Thursday");
     expected.put("F", "Friday");
-
 
     Map<String, String> days = fwd.lis(ByAngular.repeater("allinfo in days")).map(new FluentWebElementMap<String, String>() {
       public void map(FluentWebElement elem, int ix) {
